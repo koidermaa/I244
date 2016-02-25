@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Tabelid ja vormid</title>
+		<style>
+		th, td {
+   		padding: 5px;
+		}
+		</style>		
+
+	</head>
+	<body>
+	
+		<table border="1">
+		<caption>Kümenvõistluse hooaja edetabel</caption>
+  		<tr>
+   		<th>Eesnimi</th>
+    	<th>Perenimi</th> 
+    	<th>Punkte</th>
+  		</tr>
+  		<tr>
+    	<td>Maicel</td>
+    	<td>Uibo</td> 
+    	<td>8356</td>
+  		</tr>
+  		<tr>
+    	<td>Janek</td>
+    	<td>Õiglane</td> 
+    	<td>7945</td>
+  		</tr>
+  		<tr>
+    	<td>Taavi</td>
+    	<td>Tsernjavski</td> 
+    	<td>7744</td>
+  		</tr>
+		</table><br>
+		
+		<table border="1">
+		<caption>Teine tabel</caption>
+  		<tr>
+   		<th colspan="3">Eesnimi</th>
+    	<th rowspan="3">Perenimi</th> 
+  		</tr>
+  		<tr>
+    	<td rowspan="3">Maicel</td>
+    	<td>&nbsp;</td> 
+    	<td>8356</td>
+  		</tr>
+  		<tr>
+    	<td>Janek</td>
+    	<td>Õiglane</td> 
+  		</tr>
+  		<tr>
+    	<td colspan="3">Taavi</td>
+  		</tr>
+		</table><br>
+		
+		<h2>Registreerimisvorm</h2>
+		<form action="teineI244.html" method="get">
+ 		Nimi: <input type="text" name="nimi" placeholder="sisesta nimi"><br><br>
+ 		Parool: <input type="password" name="parool"><br><br>
+ 		<input type="radio" name="sugu" value="mees"> Mees<br>
+ 	 	<input type="radio" name="sugu" value="naine"> Naine<br><br>
+ 	 	
+ 	 	IT keeled:<br>
+ 	 	<input type="checkbox" name="keeled" value="Java">Java<br>
+  		<input type="checkbox" name="keeled" value="C"> C <br>
+  		<input type="checkbox" name="keeled" value="Phython"> Phyton <br><br>
+		
+		<textarea rows="4" cols="50" placeholder="Lisainfo" name="tekstikast"></textarea><br><br>
+ 		 
+ 		 <input type="submit" value="Saada">
+		</form>
+				
+		<p>
+ 		<a href="http://validator.w3.org/check?uri=referer">
+ 		<img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="31" width="88" />
+ 		</a>
+		</p>
+
+	</body>
+</html>
