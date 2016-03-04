@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Praktikum 03 - selektorite ülesanne</title>
+	<style type="text/css">
+	/*  SIIN KIRJELDADA SELEKTORID NING ELEMENDIS NÕUTUD STIIL */
+	p { 
+		color: red;
+	}
+	div { 
+		width: 300px; text-align:center; 
+	}
+	li { 
+		 width:90%; background-color:  #c0c0c0; list-style:none;
+	}
+	div > p { 
+		background-color: gray;
+	}
+	#keha { 
+		background-color: gray;
+	}
+	#pea span {
+  		background-color: #c0c0c0; font-size:30px;
+	}
+	.jalg { 
+		background-color: gray; color:white;
+	}
+	#teine p { 
+		background-color: white; color:black; text-align:left;
+	}
+	a:hover { 
+    	background-color: yellow;
+	}
+	a:visited {
+    	color: green;
+	}
+	a#koll:hover { 
+    	background-color: red; font-style:italic;
+	}
+	
+	</style>
+</head>
+<body>
+	<h2>CSS-bot</h2>
+
+
+	<div id="pea">
+		<span>?O_o?</span>
+	</div>
+	<div id="keha">
+		<ul>
+			<li><p>...</p></li>
+			<li><p>...</p></li>
+			<li><p>...</p></li>
+			<li><p>...</p></li>
+			<li><p>...</p></li>
+		</ul>
+	</div>
+	<div>
+		<p>&nbsp;</p>
+		<span class="jalg">OOOOOOOO</span> <span class="jalg">OOOOOOOO</span>
+	</div>
+	
+	<div id ="teine">
+	<p style="color:green;">minu sees olev tekst on roheline</p>
+	<p style="text-decoration: underline;">minu sees olev teks on alla joonitud</p>
+	<p style="background-color:DarkGreen;">minul on tuhmroheline taust</p>
+	<p style="font-size:200%;">minul on teistest 2x suurem fondi suurus</p>
+	<p style="font-family:monospace;">minul on tekst monospace fondiga</p>
+	<p style="background-color:yellow; border-style: solid; border-width: 5px">minul on must paks piirjoon ning kollane taust</p>	
+	<p style="border-style: dotted; border-radius: 10px;">minul on ümmargused nurgad ja katkendlik piirjoon</p>
+	<p style="text-align:center; font-style:italic;">minu tekst onkaldkirjas ja keskele joondatud</p>
+	<p style="cursor:crosshair">minu kohale minnes muudetakse kursor crosshair-iks</p>
+	
+	<p><a href="http://www.itcollege.ee"> IT kolledzi koduleht </a></p>
+	<p><a href="http://www.itcollege.ee" id="koll"> IT kolledzi koduleht </a></p>
+	</div>
+	
+</body>
+</html>
