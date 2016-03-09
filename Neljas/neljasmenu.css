@@ -1,0 +1,46 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #C8C8C8;
+    position:fixed;
+    top: 0;
+    width: 100%;
+}
+
+li {
+    display: inline-block;
+}
+
+li a {
+    padding: 14px 16px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    
+    text-decoration:none;
+}
+
+li a:hover:not(.active) {
+    background-color: #888888;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+.tekst {
+    padding-left:30px;
+}
+#essa {
+    margin-top:50px;
+}
+#pea {
+    background-color: white;
+    width:50%;
+    margin-left:25%;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: FFFFCC;
+    }
