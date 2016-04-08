@@ -1,8 +1,27 @@
+ï»¿window.onload = function() {
+	
+	var grupp = ["A", "B", "C", "D", "E", "F"];
+	var team = ["Prantsusmaa", "Rumeenia", "Albaania", "Sveits", "Inglismaa", "Venemaa", "Wales", "Slovakkia", "Saksamaa", "Ukraina", "Poola", "PÃµhja-Iirimaa", "Hispaania", "Tsehhi", "TÃ¼rgi", "Horvaatia", "Belgia", "Itaalia", "Iirimaa", "Rootsi", "Portugal", "Island", "Austria", "Ungari"];
+
+	var l = 101;    // alagrupimÃ¤ngude tulemused jooksevad id-ga: 101-172
+	for (i = 0; i < 6; i++) {
+	document.getElementById("grupp").innerHTML += "<h1>Alagrupp "+grupp[i]+"</h1>";   // Muudab alagruppide pealkirju
+	var mangud = [team[i*4],team[i*4+1],team[i*4+2],team[i*4+3],team[i*4+1],team[i*4+3],team[i*4],team[i*4+2],team[i*4+3],team[i*4],team[i*4+1],team[i*4+2]];	
+	var m=0;
+		for (j = 0; j < 6; j++) {      			//lisab Ã¼he rea (Ã¼he mÃ¤ngu) alagruppi
+		var p = l+1;	
+		document.getElementById("grupp").innerHTML += "<div class=\"mang\"><div class=\"voistkond\">"+mangud[m]+"</div><div class=\"essa\"><input type=\"number\" name=\"quantity\" min=\"0\" max=\"9\" id=\"" +l+ "\"></div><div class=\"tessa\"><input type=\"number\" name=\"quantity\" min=\"0\" max=\"9\" id=\""+ p +"\"></div><div class=\"voistkond2\">"+mangud[m+1]+"</div></div>";
+		l=l+2;		
+		m=m+2;		
+		}	
+	}	
+}
+
+
 var next = document.getElementById("next");
 next.onclick = function(){
-	
 	var value = true;
-	for (j = 101; j < 137; j++) {						//kontrollib kas tulemused on sobivas formaadis
+	for (j = 101; j < 173; j++) {						//kontrollib kas tulemused on sobivas formaadis
 		var x = document.getElementById(j).value;
 		var y = parseInt(x);
 		
@@ -11,14 +30,15 @@ next.onclick = function(){
 			}		
 	}
 	if (value){
-		koguAndmed();									//võib minna arvutama
+		document.getElementById("edasi").style.display = "block";
+		koguAndmed();									//v?ib minna arvutama
 	}	
 	else {
 		alert ("Palun kontrolli sisestust!!");
 	}
 }	
 function koguAndmed (){
-	var a = [101,113,125];								//alagrupi esimese mängu tulemuse algus
+	var a = [101,113,125,137,149,161];								//alagrupi esimese m?ngu tulemuse algus
 	var tulemused=[];
 	
 	for (i=0; i < a.length; i++) {						// paneb alagruppide tulemused array sisse eraldi
@@ -38,7 +58,7 @@ function arvutused (tulemused, i){
 	var team1p, team2p, team3p, team4p, team1g, team2g, team3g, team4g, team1ga, team2ga, team3ga, team4ga;
 	var punktid =[];
 	
-	for (j=0; j < 12; j=j+2) {							//määrab punktid mängudele
+	for (j=0; j < 12; j=j+2) {							//mÃ¤Ã¤rab punktid mÃ¤ngudele
 		if (tulemused[j] >  tulemused[j+1]) {
 			punktid[j] =3;
 			punktid[j+1] =0;
@@ -58,13 +78,13 @@ function arvutused (tulemused, i){
 	team4p= punktid[3]+punktid[5]+punktid[8];
 	var tiimipunktid =[team1p, team2p, team3p, team4p];
 	
-	team1g= tulemused[0]+tulemused[6]+tulemused[9];		//löödud väravad tiimidele
+	team1g= tulemused[0]+tulemused[6]+tulemused[9];		//lÃ¶Ã¶dud vÃ¤ravad tiimidele
 	team2g= tulemused[1]+tulemused[4]+tulemused[10];
 	team3g= tulemused[2]+tulemused[7]+tulemused[11];
 	team4g= tulemused[3]+tulemused[5]+tulemused[8];
 	var tiimivaravad = [team1g, team2g, team3g, team4g];
 	
-	team1ga= tulemused[1]+tulemused[7]+tulemused[8];	// vastu löödud väravad tiimil
+	team1ga= tulemused[1]+tulemused[7]+tulemused[8];	// vastu l??dud v?ravad tiimil
 	team2ga= tulemused[0]+tulemused[5]+tulemused[11];
 	team3ga= tulemused[3]+tulemused[6]+tulemused[10];
 	team4ga= tulemused[2]+tulemused[4]+tulemused[9];
@@ -75,7 +95,7 @@ function arvutused (tulemused, i){
 	l = 201 + i*4;
 	k = 301 + i*4;
 	q = 401 + i*4;
-	for (j=0; j < 4; j++) {								// täidab punktide ja väravate vahe tabeli väljad
+	for (j=0; j < 4; j++) {								// t?idab punktide ja v?ravate vahe tabeli v?ljad
 		document.getElementById(k).innerHTML= tiimipunktid[j];
 		document.getElementById(l).innerHTML= tiimivaravad[j]+" : " + tiimivaravadag[j];
 		document.getElementById(q).innerHTML= ranks[j];
@@ -140,7 +160,7 @@ function ranking (tulemused, tiimipunktid, tiimivaravad, tiimivaravadag){
 	
 			var d=fourequal(vvahe, tulemused, tiimivaravad, tiimivaravadag);
 			if (d[0]==1001){
-				var e=fourequal(tiimivaravad);
+				var e=fourequal(tiimivaravad, tulemused, tiimivaravad, tiimivaravadag);
 				if (e[0]==1001){
 					kohad[0]=1;
 					kohad[1]=2;
@@ -286,11 +306,14 @@ function threeequal(a,b,c, vvahe, tulemused, tiimivaravad, tiimivaravadag){
 	else if (a==0 && b==1 && c==3){
 		uustulemus=[tulemused[0], tulemused[1], tulemused[9], tulemused[8], tulemused[4], tulemused[5]];
 		}
+	else if (a==0 && b==2 && c==3){
+		uustulemus=[tulemused[6], tulemused[7], tulemused[9], tulemused[8], tulemused[2], tulemused[3]];
+		}
 	else if (a==1 && b==2 && c==3){
-		uustulemus=[tulemused[10], tulemused[11], tulemused[4], tulemused[5], tulemused[2], tulemused[2]];
+		uustulemus=[tulemused[10], tulemused[11], tulemused[4], tulemused[5], tulemused[2], tulemused[3]];
 		}
 
-	for (j=0; j < 6; j=j+2) {							//määrab punktid mängudele
+	for (j=0; j < 6; j=j+2) {							//m??rab punktid m?ngudele
 		if (uustulemus[j] >  uustulemus[j+1]) {
 			ppunktid[j] =3;
 			ppunktid[j+1] =0;
@@ -422,4 +445,695 @@ function ranking3 (array, tulemused, tiimivaravad, tiimivaravadag, a,b,c){
 	p=0;				
 	}
 	return kohadK;
+}
+
+var edasi = document.getElementById("edasi");
+edasi.onclick = function(){
+	document.getElementById("grupp").style.display = "none";
+	document.getElementById("next").style.display = "none";
+	document.getElementById("kuusteist").style.display = "block";
+	kuusteistData();
+	}
+
+$(document).ready(function(){
+
+			$("#togg").click(function(){
+				$("#grupp").toggle();
+				$("#next").toggle();
+			});	
+			
+});
+function kuusteistData(){
+	
+	var alaPunktid=[];
+	var alaKohad=[];
+	var riigid=[];
+	var varStrike=[];
+	var varAgainst=[];
+	var varVahe=[];
+	var ii=0;
+	
+	for (var jj = 101; jj < 125; jj++) {	
+		var pp = jj+200;					
+		var aa = document.getElementById(pp).innerHTML;
+		var bb = parseInt(aa);
+		alaPunktid[ii]=bb;
+		
+		var pm = jj+400;					
+		var ab = document.getElementById(pm).innerHTML;
+		riigid[ii]=ab;
+		
+		var pn = jj+300;					
+		var ac = document.getElementById(pn).innerHTML;
+		var bc = parseInt(ac);
+		alaKohad[ii]=bc;
+		
+		var po = jj+100;					
+		var ad = document.getElementById(po).innerHTML;
+		var ae = ad.charAt(0);
+		var af = parseInt(ae);
+		var ag = ad.charAt(4);
+		var ah = parseInt(ag);
+		varStrike[ii]=af;
+		varAgainst[ii]=ah;
+		varVahe[ii]=af-ah;
+		
+		ii++;	
+	}
+		
+	kuusteistArvutus(alaPunktid, riigid, alaKohad, varStrike, varAgainst, varVahe);
+}
+function kuusteistArvutus(alaPunktid, riigid, alaKohad, varStrike, varAgainst, varVahe){
+	
+	var esimesePos=[613,605,609,603,611,607];
+	var teinePos=[601,615,602,612,608,616];
+	var je=0;
+	var jt=0;
+	var js=0;
+	var kolmasRiigid=[];
+	var kolmasPunktid=[];
+	var kolmasVaravad=[];
+	var kolmasVarSisse=[];
+	var kolmasVahe=[];
+	
+	for (var jk = 0; jk < 24; jk++) {	
+		if (alaKohad[jk]==1){
+			document.getElementById(esimesePos[je]).innerHTML=riigid[jk];
+			je++;
+			}
+		if (alaKohad[jk]==2){
+			document.getElementById(teinePos[jt]).innerHTML=riigid[jk];
+			jt++;
+			}
+		if (alaKohad[jk]==3){
+			kolmasRiigid[js]=riigid[jk];
+			kolmasPunktid[js]=alaPunktid[jk];
+			kolmasVaravad[js]=varStrike[jk];
+			kolmasVarSisse[js]=varAgainst[jk];
+			kolmasVahe[js]=varVahe[jk];
+			js++;
+			}		
+	}
+	paigutaKolmandad(kolmasRiigid, kolmasPunktid, kolmasVaravad, kolmasVarSisse,kolmasVahe);	
+}
+function paigutaKolmandad(kolmasRiigid, kolmasPunktid, kolmasVaravad, kolmasVarSisse, kolmasVahe){
+		var kolmasPos=[614,606,610,604];
+		
+		var vv, plKol;
+		var po =0;
+		var kpositsioonid=[];
+		var rankKol = 1;
+		var maxp = Math.max.apply(Math, kolmasPunktid);
+		var minp = Math.min.apply(Math, kolmasPunktid);
+	
+		for (vv = maxp; vv >= minp; vv--) { 
+    	
+		for (j = 0; j < 8; j++) {
+			if (kolmasPunktid[j]==vv){
+				plKol=j;
+				po++
+				}			
+			}
+		if (po==1){
+			kpositsioonid [plKol] = rankKol;
+			rankKol++;
+			}	
+		if (po==2){
+			var dc = kolmasPunktid.indexOf(vv);
+			var ec = kolmasPunktid.lastIndexOf(vv);
+			if (kolmasVahe[dc] > kolmasVahe[ec]){
+				kpositsioonid [dc] = rankKol;
+				kpositsioonid [ec] = rankKol+1;
+				}
+			else if (kolmasVahe[dc] < kolmasVahe[ec]){
+				kpositsioonid [dc] = rankKol+1;
+				kpositsioonid [ec] = rankKol;
+				}
+			else if (kolmasVahe[dc] == kolmasVahe[ec]){
+					if (kolmasVaravad[dc]  > kolmasVaravad[ec]){
+					kpositsioonid [dc] = rankKol;
+					kpositsioonid [ec] = rankKol+1;
+					}
+					else if (kolmasVaravad[dc] < kolmasVaravad[ec]){
+					kpositsioonid [dc] = rankKol+1;
+					kpositsioonid [ec] = rankKol;
+					}
+					else if (kolmasVaravad[dc] == kolmasVaravad[ec]){
+					kpositsioonid [dc] = rankKol;
+					kpositsioonid [ec] = rankKol+1;	
+					}		
+			}
+			rankKol=rankKol+2;
+			}	
+			
+		if (po==3){
+			var indexes=getAllIndexes(kolmasPunktid, vv);
+			var a = indexes[0];
+			var b = indexes[1];
+			var c = indexes[2];
+			var kolmVar2=[kolmasVaravad[a],kolmasVaravad[b],kolmasVaravad[c]];
+			var kolmVahe2=[kolmasVahe[a],kolmasVahe[b],kolmasVahe[c]];
+			var vahekokkuvote = kolmedvordselt(kolmVar2, kolmVahe2, rankKol);
+			kpositsioonid[a]=vahekokkuvote[0];
+			kpositsioonid[b]=vahekokkuvote[1];
+			kpositsioonid[c]=vahekokkuvote[2];
+			rankKol=rankKol+3;
+			}	
+		if (po==4){
+			var indexes=getAllIndexes(kolmasPunktid, vv);
+			var a = indexes[0];
+			var b = indexes[1];
+			var c = indexes[2];
+			var d = indexes[3];
+			var kolmVar3=[kolmasVaravad[a],kolmasVaravad[b],kolmasVaravad[c],kolmasVaravad[d]];
+			var kolmVahe3=[kolmasVahe[a],kolmasVahe[b],kolmasVahe[c],kolmasVahe[d]];
+			var vahekokkuvote2 = neljadvordselt(kolmVar3, kolmVahe3, rankKol);
+			kpositsioonid[a]=vahekokkuvote2[0];
+			kpositsioonid[b]=vahekokkuvote2[1];
+			kpositsioonid[c]=vahekokkuvote2[2];
+			kpositsioonid[d]=vahekokkuvote2[3];
+			rankKol=rankKol+4;
+			}
+		if (po==5){
+			var indexes=getAllIndexes(kolmasPunktid, vv);
+			var a = indexes[0];
+			var b = indexes[1];
+			var c = indexes[2];
+			var d = indexes[3];
+			var e = indexes[4];
+			var kolmVar4=[kolmasVaravad[a],kolmasVaravad[b],kolmasVaravad[c],kolmasVaravad[d],kolmasVaravad[e]];
+			var kolmVahe4=[kolmasVahe[a],kolmasVahe[b],kolmasVahe[c],kolmasVahe[d],kolmasVahe[e]];
+			var vahekokkuvote3 = viiedvordselt(kolmVar4, kolmVahe4, rankKol);
+			kpositsioonid[a]=vahekokkuvote3[0];
+			kpositsioonid[b]=vahekokkuvote3[1];
+			kpositsioonid[c]=vahekokkuvote3[2];
+			kpositsioonid[d]=vahekokkuvote3[3];
+			kpositsioonid[e]=vahekokkuvote3[4];		
+			rankKol=rankKol+5;
+			}
+		if (po==6){
+			kpositsioonid [0] = rankKol;
+			kpositsioonid [1] = rankKol+1;
+			kpositsioonid [2] = rankKol+2;
+			kpositsioonid [3] = rankKol+3;
+			kpositsioonid [4] = rankKol+4;
+			kpositsioonid [5] = rankKol+5;
+			}				
+		
+		po=0;
+		}
+		
+		var newPos = kolmandadPaika(kpositsioonid);
+		for (z = 0; z < 4; z++) {
+			
+			var koht = newPos[z]-1;
+			document.getElementById(kolmasPos[z]).innerHTML=kolmasRiigid[koht];	
+		}
+	}	
+	
+function kolmedvordselt(kolmVar2, kolmVahe2, rankPol){
+		var vr, plKolm;
+		var pd =0;
+		var vordsedK=[];
+		var maxs = Math.max.apply(Math, kolmVahe2);
+		var mins = Math.min.apply(Math, kolmVahe2);
+		
+		for (vr = maxs; vr >= mins; vr--) { 
+    	
+		for (j = 0; j < 3; j++) {
+			if (kolmVahe2[j]==vr){
+				plKolm=j;
+				pd++
+				}			
+			}
+		if (pd==1){
+			vordsedK [plKolm] = rankPol;
+			rankPol++;
+		}	
+		if (pd==2){
+			var gc = kolmVahe2.indexOf(vr);
+			var hc = kolmVahe2.lastIndexOf(vr);
+			if (kolmVahe2[gc]  > kolmVahe2[hc]){
+			vordsedK [gc] = rankPol;
+			vordsedK [hc] = rankPol+1;
+			}
+			else if (kolmVahe2[gc] < kolmVahe2[hc]){
+			vordsedK [gc] = rankPol+1;
+			vordsedK [hc] = rankPol;
+			}
+			else if (kolmVahe2[gc] == kolmVahe2[hc]){
+				if (kolmVar2[gc]  > kolmVar2[hc]){
+					vordsedK [gc] = rankPol;
+					vordsedK [hc] = rankPol+1;
+					}
+					else if (kolmVar2[gc] < kolmVar2[hc]){
+					vordsedK [gc] = rankPol+1;
+					vordsedK [hc] = rankPol;
+					}
+					else if (kolmVar2[gc] == kolmVar2[gc]){
+					vordsedK [gc] = rankPol;
+					vordsedK [hc] = rankPol+1;					
+					}
+			}	
+			rankPol=rankPol+2;	
+		}
+		if (pd==3){
+			var vg, plKolmas;
+			var pu =0;
+			var maxl = Math.max.apply(Math, kolmVar2);
+			var minl = Math.min.apply(Math, kolmVar2);
+	
+			for (vg = maxl; vg >= minl; vg--) { 
+    	
+			for (i = 0; i < 3; i++) {
+			if (kolmVar2[i]==vg){
+				plKolmas=i;
+				pu++
+				}			
+			}
+			if (pu==1){
+			vordsedK [plKolmas] = rankPol;
+			rankPol++;
+			}	
+			if (pu==2){
+			var lc = kolmVar2.indexOf(vg);
+			var mc = kolmVar2.lastIndexOf(vg);
+					vordsedK [lc] = rankPol;
+					vordsedK [mc] = rankPol+1;					
+			rankPol=rankPol+2;	
+			}	
+			if (pu==3){
+				vordsedK [0] = rankPol;
+				vordsedK [1] = rankPol+1;
+				vordsedK [2] = rankPol+2;			
+			}
+			pu=0;		
+			}	
+		}
+		pd=0;
+		}
+		return vordsedK;
+}
+function neljadvordselt(kolmVar3, kolmVahe3, rankPol){
+		var vr, plKolm;
+		var pd =0;
+		var vordsedK=[];
+		var maxs = Math.max.apply(Math, kolmVahe3);
+		var mins = Math.min.apply(Math, kolmVahe3);
+		
+		for (vr = maxs; vr >= mins; vr--) { 
+    	
+		for (j = 0; j < 4; j++) {
+			if (kolmVahe3[j]==vr){
+				plKolm=j;
+				pd++
+				}			
+			}
+		if (pd==1){
+			vordsedK [plKolm] = rankPol;
+			rankPol++;
+		}	
+		if (pd==2){
+			var gc = kolmVahe3.indexOf(vr);
+			var hc = kolmVahe3.lastIndexOf(vr);
+			if (kolmVahe3[gc]  > kolmVahe3[hc]){
+			vordsedK [gc] = rankPol;
+			vordsedK [hc] = rankPol+1;
+			}
+			else if (kolmVahe3[gc] < kolmVahe3[hc]){
+			vordsedK [gc] = rankPol+1;
+			vordsedK [hc] = rankPol;
+			}
+			else if (kolmVahe3[gc] == kolmVahe3[hc]){
+				if (kolmVar3[gc]  > kolmVar3[hc]){
+					vordsedK [gc] = rankPol;
+					vordsedK [hc] = rankPol+1;
+					}
+					else if (kolmVar3[gc] < kolmVar3[hc]){
+					vordsedK [gc] = rankPol+1;
+					vordsedK [hc] = rankPol;
+					}
+					else if (kolmVar3[gc] == kolmVar3[gc]){
+					vordsedK [gc] = rankPol;
+					vordsedK [hc] = rankPol+1;					
+					}
+			}	
+			rankPol=rankPol+2;	
+		}
+		if (pd==3){
+			var indexesX=getAllIndexes(kolmVahe3, vr);
+			var ax = indexesX[0];
+			var bx = indexesX[1];
+			var cx = indexesX[2];	
+			var kolmVar4 = [kolmVar3[ax],kolmVar3[bx],kolmVar3[cx]];	
+			var kolmVahe4 = [kolmVahe3[ax],kolmVahe3[bx],kolmVahe3[cx]];		
+			var loppseis = kolmedvordselt(kolmVar4, kolmVahe4, rankPol);
+			vordsedK [ax] = loppseis[0];
+			vordsedK [bx] = loppseis[1];
+			vordsedK [cx] = loppseis[2];
+			rankPol=rankPol+3;
+		}
+		if (pd==4){
+			var vg, plKolmas;
+			var pu =0;
+			var maxl = Math.max.apply(Math, kolmVar3);
+			var minl = Math.min.apply(Math, kolmVar3);
+	
+			for (vg = maxl; vg >= minl; vg--) { 
+    	
+			for (i = 0; i < 4; i++) {
+			if (kolmVar3[i]==vg){
+				plKolmas=i;
+				pu++
+				}			
+			}
+			if (pu==1){
+			vordsedK [plKolmas] = rankPol;
+			rankPol++;
+			}	
+			if (pu==2){
+			var lc = kolmVar3.indexOf(vg);
+			var mc = kolmVar3.lastIndexOf(vg);
+					vordsedK [lc] = rankPol;
+					vordsedK [mc] = rankPol+1;					
+			rankPol=rankPol+2;	
+			}	
+			if (pu==3){
+				var indexesU=getAllIndexes(kolmVar3, vg);
+				var aa = indexesU[0];
+				var bb = indexesU[1];
+				var cc = indexesU[2];
+				vordsedK [aa] = rankPol;
+				vordsedK [bb] = rankPol+1;
+				vordsedK [cc] = rankPol+2;					
+				rankPol=rankPol+3;	
+			}
+			if (pu==4){
+				vordsedK [0] = rankPol;
+				vordsedK [1] = rankPol+1;
+				vordsedK [2] = rankPol+2;	
+				vordsedK [3] = rankPol+3;		
+			}
+			pu=0;		
+			}	
+		}
+		pd=0;
+		}
+		return vordsedK;
+}
+
+function viiedvordselt(kolmVar4, kolmVahe4, rankPol) {
+		var vr, plKolm;
+		var pd =0;
+		var vordsedK=[];
+		var maxs = Math.max.apply(Math, kolmVahe4);
+		var mins = Math.min.apply(Math, kolmVahe4);
+		
+		for (vr = maxs; vr >= mins; vr--) { 
+    	
+		for (j = 0; j < 5; j++) {
+			if (kolmVahe4[j]==vr){
+				plKolm=j;
+				pd++
+				}			
+			}
+		if (pd==1){
+			vordsedK [plKolm] = rankPol;
+			rankPol++;
+		}	
+		if (pd==2){
+			var gc = kolmVahe4.indexOf(vr);
+			var hc = kolmVahe4.lastIndexOf(vr);
+			if (kolmVahe4[gc]  > kolmVahe4[hc]){
+			vordsedK [gc] = rankPol;
+			vordsedK [hc] = rankPol+1;
+			}
+			else if (kolmVahe4[gc] < kolmVahe4[hc]){
+			vordsedK [gc] = rankPol+1;
+			vordsedK [hc] = rankPol;
+			}
+			else if (kolmVahe4[gc] == kolmVahe4[hc]){
+				if (kolmVar4[gc]  > kolmVar4[hc]){
+					vordsedK [gc] = rankPol;
+					vordsedK [hc] = rankPol+1;
+					}
+					else if (kolmVar4[gc] < kolmVar4[hc]){
+					vordsedK [gc] = rankPol+1;
+					vordsedK [hc] = rankPol;
+					}
+					else if (kolmVar4[gc] == kolmVar4[gc]){
+					vordsedK [gc] = rankPol;
+					vordsedK [hc] = rankPol+1;					
+					}
+			}	
+			rankPol=rankPol+2;	
+		}
+		if (pd==3){
+			var indexesX=getAllIndexes(kolmVahe4, vr);
+			var ax = indexesX[0];
+			var bx = indexesX[1];
+			var cx = indexesX[2];	
+			var kolmVar5 = [kolmVar4[ax],kolmVar4[bx],kolmVar4[cx]];	
+			var kolmVahe5 = [kolmVahe4[ax],kolmVahe4[bx],kolmVahe4[cx]];		
+			var loppseis = kolmedvordselt(kolmVar5, kolmVahe5, rankPol);
+			vordsedK [ax] = loppseis[0];
+			vordsedK [bx] = loppseis[1];
+			vordsedK [cx] = loppseis[2];
+			rankPol=rankPol+3;
+		}
+		if (pd==4){
+			var indexesZ=getAllIndexes(kolmVahe4, vr);
+			var az = indexesZ[0];
+			var bz = indexesZ[1];
+			var cz = indexesZ[2];
+			var dz = indexesZ[3];	
+			var kolmVar5 = [kolmVar4[az],kolmVar4[bz],kolmVar4[cz],kolmVar4[dz]];	
+			var kolmVahe5 = [kolmVahe4[az],kolmVahe4[bz],kolmVahe4[cz],kolmVahe4[dz]];
+			var vahekokkuvote5 = neljadvordselt(kolmVar5, kolmVahe5, rankPol);
+			vordsedK [az]= vahekokkuvote5[0];
+			vordsedK [bz]= vahekokkuvote5[1];
+			vordsedK [cz]= vahekokkuvote5[2];
+			vordsedK [dz]= vahekokkuvote5[3];
+			rankPol=rankPol+3;
+		}
+		if (pd==5){
+			var vg, plKolmas;
+			var pu =0;
+			var maxl = Math.max.apply(Math, kolmVar4);
+			var minl = Math.min.apply(Math, kolmVar4);
+	
+			for (vg = maxl; vg >= minl; vg--) { 
+    	
+			for (i = 0; i < 5; i++) {
+			if (kolmVar4[i]==vg){
+				plKolmas=i;
+				pu++
+				}			
+			}
+			if (pu==1){
+			vordsedK [plKolmas] = rankPol;
+			rankPol++;
+			}	
+			if (pu==2){
+			var lc = kolmVar4.indexOf(vg);
+			var mc = kolmVar4.lastIndexOf(vg);
+					vordsedK [lc] = rankPol;
+					vordsedK [mc] = rankPol+1;					
+			rankPol=rankPol+2;	
+			}	
+			if (pu==3){
+				var indexesU=getAllIndexes(kolmVar4, vg);
+				var aa = indexesU[0];
+				var bb = indexesU[1];
+				var cc = indexesU[2];
+				vordsedK [aa] = rankPol;
+				vordsedK [bb] = rankPol+1;
+				vordsedK [cc] = rankPol+2;					
+				rankPol=rankPol+3;	
+			}
+			if (pu==4){
+				var indexesU=getAllIndexes(kolmVar4, vg);
+				var aa = indexesU[0];
+				var bb = indexesU[1];
+				var cc = indexesU[2];
+				var dd = indexesU[3];
+				vordsedK [aa] = rankPol;
+				vordsedK [bb] = rankPol+1;
+				vordsedK [cc] = rankPol+2;	
+				vordsedK [dd] = rankPol+3;				
+				rankPol=rankPol+3;	
+			}
+			if (pu==5){
+				vordsedK [0] = rankPol;
+				vordsedK [1] = rankPol+1;
+				vordsedK [2] = rankPol+2;	
+				vordsedK [3] = rankPol+3;
+				vordsedK [4] = rankPol+4;		
+			}
+			pu=0;		
+			}	
+		}
+		pd=0;
+		}
+		return vordsedK;
+}
+function kolmandadPaika(kpositsioonid){
+	var jarjestus=[];
+	for (i = 0; i < 6; i++) {
+		if (kpositsioonid[i]==1 || kpositsioonid[i]==2 || kpositsioonid[i]==3 || kpositsioonid[i]==4 ){
+			kpositsioonid[i]=2;
+			}
+		else {
+			kpositsioonid[i]=3;
+			}
+	}
+	if (kpositsioonid[0]==2 && kpositsioonid[1]==2 && kpositsioonid[2]==2 && kpositsioonid[3]==2 ){
+		jarjestus=[3,4,1,2];
+		}
+	if (kpositsioonid[0]==2 && kpositsioonid[1]==2 && kpositsioonid[2]==2 && kpositsioonid[4]==2 ){
+		jarjestus=[3,1,2,5];
+		}
+	if (kpositsioonid[0]==2 && kpositsioonid[1]==2 && kpositsioonid[2]==2 && kpositsioonid[5]==2 ){
+		jarjestus=[3,1,2,6];
+		}
+	if (kpositsioonid[0]==2 && kpositsioonid[1]==2 && kpositsioonid[3]==2 && kpositsioonid[4]==2 ){
+		jarjestus=[4,1,2,5];
+		}
+	if (kpositsioonid[0]==2 && kpositsioonid[1]==2 && kpositsioonid[3]==2 && kpositsioonid[5]==2 ){
+		jarjestus=[4,1,2,6];
+		}
+	if (kpositsioonid[0]==2 && kpositsioonid[1]==2 && kpositsioonid[4]==2 && kpositsioonid[5]==2 ){
+		jarjestus=[5,1,2,6];
+		}
+	if (kpositsioonid[0]==2 && kpositsioonid[2]==2 && kpositsioonid[3]==2 && kpositsioonid[4]==2 ){
+		jarjestus=[3,4,1,5];
+		}
+	if (kpositsioonid[0]==2 && kpositsioonid[2]==2 && kpositsioonid[3]==2 && kpositsioonid[5]==2 ){
+		jarjestus=[3,4,1,6];
+		}
+	if (kpositsioonid[0]==2 && kpositsioonid[2]==2 && kpositsioonid[4]==2 && kpositsioonid[5]==2 ){
+		jarjestus=[3,1,6,5];
+		}
+	if (kpositsioonid[0]==2 && kpositsioonid[3]==2 && kpositsioonid[4]==2 && kpositsioonid[5]==2 ){
+		jarjestus=[4,1,6,5];
+		}
+	if (kpositsioonid[1]==2 && kpositsioonid[2]==2 && kpositsioonid[3]==2 && kpositsioonid[4]==2 ){
+		jarjestus=[3,4,2,5];
+		}
+	if (kpositsioonid[1]==2 && kpositsioonid[2]==2 && kpositsioonid[3]==2 && kpositsioonid[5]==2 ){
+		jarjestus=[3,4,2,6];
+		}
+	if (kpositsioonid[1]==2 && kpositsioonid[2]==2 && kpositsioonid[4]==2 && kpositsioonid[5]==2 ){
+		jarjestus=[5,3,2,6];
+		}
+	if (kpositsioonid[1]==2 && kpositsioonid[3]==2 && kpositsioonid[4]==2 && kpositsioonid[5]==2 ){
+		jarjestus=[5,4,2,6];
+		}
+	if (kpositsioonid[2]==2 && kpositsioonid[3]==2 && kpositsioonid[4]==2 && kpositsioonid[5]==2 ){
+		jarjestus=[3,4,6,5];
+		}
+	return jarjestus;
+}
+function veerandFinaal(el){
+	var elIdy=el.id;
+	var elId = parseInt(elIdy);
+	var even = isEven(elId);
+	if (even){
+		var aa = document.getElementById(elId).value;	
+		var bb = document.getElementById(elId-1).value;
+		var c = document.getElementById(elId-100).innerHTML;
+		var d = document.getElementById(elId-101).innerHTML;
+		}
+	else {
+		
+		var aa = document.getElementById(elId).value;	
+		var bb = document.getElementById(elId+1).value;
+		var c = document.getElementById(elId-100).innerHTML;
+		var d = document.getElementById(elId-99).innerHTML;
+		}
+		
+		var a = parseInt(aa);
+		var b = parseInt(bb);
+		
+		
+		var kinnitus = true;
+		if (isNaN(a) || a < 0 || a > 9){
+			kinnitus = false;
+			}
+		if (isNaN(b) || b < 0 || b > 9){
+			kinnitus = false;
+			}
+		
+			
+		if (a==b){
+			alert ("viik ei sobi siia");		
+			}
+		 else if (kinnitus){
+			taidaEdasi(a,b,c,d,elId);
+			}			
+	}
+function isEven(value) {
+	if (value%2 == 0)
+		return true;
+	else
+		return false;
+}
+function taidaEdasi(a,b,c,d, elId){
+	
+	var taide = elId-84-Math.ceil((elId-701)/2);
+
+	if (a > b){
+		document.getElementById(taide).innerHTML=c;
+		}
+	else if (a < b){
+		document.getElementById(taide).innerHTML=d;
+		}
+}
+function voitja(el){
+	var elIdy=el.id;
+	var elId = parseInt(elIdy);
+	var even = isEven(elId);
+	if (even){
+		var aa = document.getElementById(elId).value;	
+		var bb = document.getElementById(elId-1).value;
+		var c = document.getElementById(elId-100).innerHTML;
+		var d = document.getElementById(elId-101).innerHTML;
+		}
+	else {
+		
+		var aa = document.getElementById(elId).value;	
+		var bb = document.getElementById(elId+1).value;
+		var c = document.getElementById(elId-100).innerHTML;
+		var d = document.getElementById(elId-99).innerHTML;
+		}
+		
+		var a = parseInt(aa);
+		var b = parseInt(bb);
+		
+		
+		var kinnitus = true;
+		if (isNaN(a) || a < 0 || a > 9){
+			kinnitus = false;
+			}
+		if (isNaN(b) || b < 0 || b > 9){
+			kinnitus = false;
+			}
+		
+			
+		if (a==b){
+			alert ("viik ei sobi siia");		
+			}
+		 else if (kinnitus){
+			selgitaVoitja(a,b,c,d,elId);
+			}			
+	}
+function selgitaVoitja(a,b,c,d, elId){
+	
+
+	if (a > b){
+		document.getElementById("winner").innerHTML="TurniirivÃµitja on: "+c;
+		}
+	else if (a < b){
+		document.getElementById("winner").innerHTML="TurniirivÃµitja on: "+d;
+		}
 }
