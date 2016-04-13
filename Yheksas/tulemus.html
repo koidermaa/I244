@@ -1,0 +1,19 @@
+
+	<h3>Valiku tulemus</h3>
+	<?php 
+
+	$valik="";
+	if (isset($_POST["pilt"]) &&!empty($_POST["pilt"])) {
+	$valik=$_POST["pilt"];
+	$arrayuus=$pildid[$valik-1];
+	echo "Sinu valik oli:<br/>";
+	echo "<img src=\"".$arrayuus["source"]."\" alt=\"".$arrayuus["alt"]."\"/>";
+	
+	}  else {
+		echo "Mine tagasi ja vali palun uuesti";
+		}
+	?>
+	
+	
+
+
