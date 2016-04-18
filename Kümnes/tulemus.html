@@ -1,0 +1,33 @@
+
+	<h3>Valiku tulemus</h3>
+	<?php 
+
+	if (!isset($_SESSION["pilt"])) { 
+	
+		$valik="";
+		if (isset($_POST["pilt"]) &&!empty($_POST["pilt"])) {
+		$valik=$_POST["pilt"];
+		$_SESSION["pilt"] = $valik-1;
+		$arrayuus=$pildid[$valik-1];
+		echo "Sinu valik oli:<br/>";
+		echo "<img src=\"".$arrayuus["source"]."\" alt=\"".$arrayuus["alt"]."\"/>";
+	
+		}  else {
+		echo "Mine tagasi ja vali palun uuesti";
+		}
+		
+	}  else {
+		
+		echo "Sinu valik on juba tehtud<br/>";
+		$number = $_SESSION["pilt"];
+		$arrayuus=$pildid[$number];
+		echo "Sinu valik oli:<br/>";
+		echo "<img src=\"".$arrayuus["source"]."\" alt=\"".$arrayuus["alt"]."\"/>";
+		
+		}
+		
+	?>
+	<p><a href="lopp.php">lopeta sessioon</a></p>
+	
+
+

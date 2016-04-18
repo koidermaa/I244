@@ -1,0 +1,32 @@
+﻿
+	<?php if (!isset($_SESSION["pilt"])):  ?>
+
+	<h3>Vali oma lemmik :)</h3>
+	<form action="?mode=tulemus" method="POST">
+	<?php foreach($pildid as $value): ?>
+		<p>
+	
+			<label for="p<?php echo $value['id'] ?>">
+				<img src="<?php echo $value['source'] ?>" alt="<?php echo $value['alt'] ?>" height="100" />
+			</label>
+			<input type="radio" value="<?php echo $value['id'] ?>" id="p<?php echo $value['id'] ?>" name="pilt"/>
+			
+		</p>
+	<?php endforeach; ?>
+	
+		
+		<br/>
+		<input type="submit" value="Valin!"/>
+	</form>
+	<?php else:  ?>
+	<?php	
+		echo "Sinu valik on juba tehtud<br/>";
+		$number = $_SESSION["pilt"];
+		$arrayuus=$pildid[$number];
+		echo "Sinu valik oli:<br/>";
+		echo "<img src=\"".$arrayuus["source"]."\" alt=\"".$arrayuus["alt"]."\"/>";
+		?>
+		<p><a href="lopp.php">lopeta sessioon</a></p>
+	
+	<?php endif; ?>
+	
