@@ -1,0 +1,21 @@
+CREATE TABLE koiderma_loomaaed (
+	id integer PRIMARY KEY auto_increment,
+	nimi varchar(20),
+	vanus integer,
+	liik varchar(20),
+	puur integer
+);
+
+INSERT INTO koiderma_loomaaed VALUES 
+(NULL, "Gena", 12, "krokodill", 1), 
+(NULL, "Potsataja", 5, "ahv", 1), 
+(NULL, "Garfield", 7, "kass", 2), 
+(NULL, "Goofie", 3, "koer", 2), 
+(NULL, "Gennadi", 23, "krokodill", 1), 
+(NULL, "Londiste", 6, "elevant", 3), 
+(NULL, "Muksu", 11, "kaelkirjak", 4);
+
+SELECT nimi FROM koiderma_loomaaed WHERE puur=1;
+SELECT max(vanus), min(vanus) FROM koiderma_loomaaed;
+SELECT puur, count(*) as elanikke FROM koiderma_loomaaed GROUP BY puur;
+UPDATE koiderma_loomaaed SET vanus=vanus+1;
