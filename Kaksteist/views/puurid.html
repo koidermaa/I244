@@ -1,0 +1,15 @@
+<?php if (!empty($puurid)):
+	foreach($puurid as $essa=>$puurinr):
+?>
+<div>
+<?php echo "puur nr ".$essa ?>
+<?php foreach($puurinr as $id=>$loomad): ?>
+
+<img src="<?php echo $loomad['liik'];?>" alt="<?php echo $loomad['nimi'];?>">
+
+<?php endforeach; ?>
+</div>
+
+<?php endforeach;
+endif;
+?>
