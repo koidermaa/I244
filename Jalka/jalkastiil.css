@@ -21,6 +21,9 @@
 	width: 35px;
 	margin: 2px;
 }
+#nimi input{
+	width: 200px
+}
 input[type="number"].mod::-webkit-outer-spin-button, 
 input[type="number"].mod::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -37,7 +40,7 @@ input[type=number] {
 	float:left;
 	position: absolute;
 	left: 450px;
-	top: 33px;
+	top: 90px;
 }
 table, th, td {
   	border: 1px solid black;
@@ -70,15 +73,21 @@ h1 {
 	display:none;
 }
 #kuusteist{
-	
-	
+	display:none;
 }
-#kaheksa{
-	
+#winner{
+	margin: 10px;
+	padding: 10px;
+	font-size: 16pt;
+	color: red;
+	display:none;
 }
-#eh1 {
-	margin-top: 15px;
+#nimi{
+	margin: 5px;
+	padding: 10px;
+	font-size: 14pt;
 }
+
 #togg{
 	float:right;
 	position: absolute;	
@@ -86,4 +95,22 @@ h1 {
 	text-decoration: underline;
 	font-size: 20px;
 	color: blue;
+}
+#btn{
+	margin: 5px;
+	padding: 10px;
+	height: 30px;
+	width: 150px;
+}
+#button1{
+	display:none;
+}
+#peidus{
+	display:none;
+}
+#lisakyssad{
+	display:none;
+}
+.kyssa{
+	margin: 7px;
 }

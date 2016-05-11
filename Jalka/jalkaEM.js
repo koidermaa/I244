@@ -4,15 +4,18 @@
 	var team = ["Prantsusmaa", "Rumeenia", "Albaania", "Sveits", "Inglismaa", "Venemaa", "Wales", "Slovakkia", "Saksamaa", "Ukraina", "Poola", "Põhja-Iirimaa", "Hispaania", "Tsehhi", "Türgi", "Horvaatia", "Belgia", "Itaalia", "Iirimaa", "Rootsi", "Portugal", "Island", "Austria", "Ungari"];
 
 	var l = 101;    // alagrupimängude tulemused jooksevad id-ga: 101-172
+	var t= 1001;	// input name väli
 	for (i = 0; i < 6; i++) {
 	document.getElementById("grupp").innerHTML += "<h1>Alagrupp "+grupp[i]+"</h1>";   // Muudab alagruppide pealkirju
 	var mangud = [team[i*4],team[i*4+1],team[i*4+2],team[i*4+3],team[i*4+1],team[i*4+3],team[i*4],team[i*4+2],team[i*4+3],team[i*4],team[i*4+1],team[i*4+2]];	
 	var m=0;
 		for (j = 0; j < 6; j++) {      			//lisab ühe rea (ühe mängu) alagruppi
 		var p = l+1;	
-		document.getElementById("grupp").innerHTML += "<div class=\"mang\"><div class=\"voistkond\">"+mangud[m]+"</div><div class=\"essa\"><input type=\"number\" name=\"quantity\" min=\"0\" max=\"9\" id=\"" +l+ "\"></div><div class=\"tessa\"><input type=\"number\" name=\"quantity\" min=\"0\" max=\"9\" id=\""+ p +"\"></div><div class=\"voistkond2\">"+mangud[m+1]+"</div></div>";
+		var tt= t+1
+		document.getElementById("grupp").innerHTML += "<div class=\"mang\"><div class=\"voistkond\">"+mangud[m]+"</div><div class=\"essa\"><input type=\"number\" name=\""+t+"\" min=\"0\" max=\"9\" id=\"" +l+ "\"></div><div class=\"tessa\"><input type=\"number\" name=\""+tt+"\" min=\"0\" max=\"9\" id=\""+ p +"\"></div><div class=\"voistkond2\">"+mangud[m+1]+"</div></div>";
 		l=l+2;		
-		m=m+2;		
+		m=m+2;	
+		t=t+2;;	
 		}	
 	}	
 }
@@ -21,6 +24,7 @@
 var next = document.getElementById("next");
 next.onclick = function(){
 	var value = true;
+	var nimeS = true;
 	for (j = 101; j < 173; j++) {						//kontrollib kas tulemused on sobivas formaadis
 		var x = document.getElementById(j).value;
 		var y = parseInt(x);
@@ -29,10 +33,18 @@ next.onclick = function(){
 			value = false;
 			}		
 	}
-	if (value){
+	var nimiS = document.getElementById("100").value;
+	if (!nimiS){
+		nimeS = false;
+		}
+	
+	if (value && nimeS){
 		document.getElementById("edasi").style.display = "block";
-		koguAndmed();									//v?ib minna arvutama
+		koguAndmed();									//võib minna arvutama
 	}	
+	else if (!nimeS){
+		alert ("Sisesta nimi");
+		}
 	else {
 		alert ("Palun kontrolli sisestust!!");
 	}
@@ -95,13 +107,17 @@ function arvutused (tulemused, i){
 	l = 201 + i*4;
 	k = 301 + i*4;
 	q = 401 + i*4;
+	ps = 801 + i*4;
+
 	for (j=0; j < 4; j++) {								// t?idab punktide ja v?ravate vahe tabeli v?ljad
 		document.getElementById(k).innerHTML= tiimipunktid[j];
 		document.getElementById(l).innerHTML= tiimivaravad[j]+" : " + tiimivaravadag[j];
 		document.getElementById(q).innerHTML= ranks[j];
+		document.getElementById(ps).value = ranks[j];
 		k++;
 		l++;
-		q++;		
+		q++;
+		ps++;		
 	} 		
 }
 function ranking (tulemused, tiimipunktid, tiimivaravad, tiimivaravadag){
@@ -490,6 +506,10 @@ function kuusteistData(){
 		
 		var po = jj+100;					
 		var ad = document.getElementById(po).innerHTML;
+		
+		var pikkus = ad.length;
+
+		if (pikkus==5){		
 		var ae = ad.charAt(0);
 		var af = parseInt(ae);
 		var ag = ad.charAt(4);
@@ -497,8 +517,38 @@ function kuusteistData(){
 		varStrike[ii]=af;
 		varAgainst[ii]=ah;
 		varVahe[ii]=af-ah;
+		} else if (pikkus==7){		
+		var ae = ad.slice(0,2);
+		var af = parseInt(ae);
+		var ag = ad.slice(5,7);
+		var ah = parseInt(ag);
+		varStrike[ii]=af;
+		varAgainst[ii]=ah;
+		varVahe[ii]=af-ah;
+		}
+		else if (pikkus==6){
+			var ab = ad.charAt(1);
+			var al = parseInt(ab);
+			if (isNaN(al)){
+				var ae = ad.charAt(0);
+				var af = parseInt(ae);
+				var ag = ad.slice(4,6);
+				var ah = parseInt(ag);
+				varStrike[ii]=af;
+				varAgainst[ii]=ah;
+				varVahe[ii]=af-ah;
+			} else {	
+			var ae = ad.slice(0,2);
+			var af = parseInt(ae);
+			var ag = ad.charAt(5);
+			var ah = parseInt(ag);
+			varStrike[ii]=af;
+			varAgainst[ii]=ah;
+			varVahe[ii]=af-ah;
+			}
+		}
 		
-		ii++;	
+		ii++	
 	}
 		
 	kuusteistArvutus(alaPunktid, riigid, alaKohad, varStrike, varAgainst, varVahe);
@@ -506,7 +556,9 @@ function kuusteistData(){
 function kuusteistArvutus(alaPunktid, riigid, alaKohad, varStrike, varAgainst, varVahe){
 	
 	var esimesePos=[613,605,609,603,611,607];
+	var esimesePos2=[837,829,833,827,835,831];
 	var teinePos=[601,615,602,612,608,616];
+	var teinePos2=[825,839,826,836,832,840];
 	var je=0;
 	var jt=0;
 	var js=0;
@@ -519,10 +571,12 @@ function kuusteistArvutus(alaPunktid, riigid, alaKohad, varStrike, varAgainst, v
 	for (var jk = 0; jk < 24; jk++) {	
 		if (alaKohad[jk]==1){
 			document.getElementById(esimesePos[je]).innerHTML=riigid[jk];
+			document.getElementById(esimesePos2[je]).value=riigid[jk];
 			je++;
 			}
 		if (alaKohad[jk]==2){
 			document.getElementById(teinePos[jt]).innerHTML=riigid[jk];
+			document.getElementById(teinePos2[jt]).value=riigid[jk];
 			jt++;
 			}
 		if (alaKohad[jk]==3){
@@ -538,6 +592,7 @@ function kuusteistArvutus(alaPunktid, riigid, alaKohad, varStrike, varAgainst, v
 }
 function paigutaKolmandad(kolmasRiigid, kolmasPunktid, kolmasVaravad, kolmasVarSisse, kolmasVahe){
 		var kolmasPos=[614,606,610,604];
+		var kolmasPos2=[838,830,834,828];
 		
 		var vv, plKol;
 		var po =0;
@@ -648,6 +703,7 @@ function paigutaKolmandad(kolmasRiigid, kolmasPunktid, kolmasVaravad, kolmasVarS
 			
 			var koht = newPos[z]-1;
 			document.getElementById(kolmasPos[z]).innerHTML=kolmasRiigid[koht];	
+			document.getElementById(kolmasPos2[z]).value=kolmasRiigid[koht];	
 		}
 	}	
 	
@@ -740,6 +796,7 @@ function neljadvordselt(kolmVar3, kolmVahe3, rankPol){
 		var vordsedK=[];
 		var maxs = Math.max.apply(Math, kolmVahe3);
 		var mins = Math.min.apply(Math, kolmVahe3);
+		
 		
 		for (vr = maxs; vr >= mins; vr--) { 
     	
@@ -840,6 +897,7 @@ function neljadvordselt(kolmVar3, kolmVahe3, rankPol){
 		pd=0;
 		}
 		return vordsedK;
+		
 }
 
 function viiedvordselt(kolmVar4, kolmVahe4, rankPol) {
@@ -1110,7 +1168,6 @@ function voitja(el){
 		var a = parseInt(aa);
 		var b = parseInt(bb);
 		
-		
 		var kinnitus = true;
 		if (isNaN(a) || a < 0 || a > 9){
 			kinnitus = false;
@@ -1118,22 +1175,52 @@ function voitja(el){
 		if (isNaN(b) || b < 0 || b > 9){
 			kinnitus = false;
 			}
-		
 			
 		if (a==b){
 			alert ("viik ei sobi siia");		
 			}
 		 else if (kinnitus){
+			 
 			selgitaVoitja(a,b,c,d,elId);
 			}			
 	}
 function selgitaVoitja(a,b,c,d, elId){
 	
+	var teamid = ["Prantsusmaa", "Rumeenia", "Albaania", "Sveits", "Inglismaa", "Venemaa", "Wales", "Slovakkia", "Saksamaa", "Ukraina", "Poola", "Põhja-Iirimaa", "Hispaania", "Tsehhi", "Türgi", "Horvaatia", "Belgia", "Itaalia", "Iirimaa", "Rootsi", "Portugal", "Island", "Austria", "Ungari"];
+	var g = teamid.indexOf(c);
+	var h = teamid.indexOf(d);
+	if (g == -1 || h == -1){
+			alert ("vaata finaali paari!");
+			}
 
 	if (a > b){
 		document.getElementById("winner").innerHTML="Turniirivõitja on: "+c;
+		document.getElementById("1157").value = c;
 		}
 	else if (a < b){
 		document.getElementById("winner").innerHTML="Turniirivõitja on: "+d;
+		document.getElementById("1157").value = d;
 		}
+	taidakastid();	
+}
+function taidakastid (){
+	var ts = 841;
+	var ls = 617;
+	for (i = 0; i < 8; i++) {
+		document.getElementById(ts).value=document.getElementById(ls).innerHTML;
+		ts++;
+		ls++;	
+	}
+	var tst = 849;
+	var lsl = 625;
+	for (i = 0; i < 4; i++) {
+		document.getElementById(tst).value=document.getElementById(lsl).innerHTML;
+		tst++;
+		lsl++;	
+	}
+	document.getElementById("853").value=document.getElementById("629").innerHTML;
+	document.getElementById("854").value=document.getElementById("630").innerHTML;
+	document.getElementById("winner").style.display = "block";
+	document.getElementById("lisakyssad").style.display = "block";
+	document.getElementById("button1").style.display = "block";
 }
