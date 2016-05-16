@@ -23,7 +23,7 @@ echo "</pre>";
 		<meta charset="utf-8" />
 		<title>Jalgpalli EM</title>
 		
-		<link rel="stylesheet" type="text/css" href="jalkastiil3.css" />
+		<link rel="stylesheet" type="text/css" href="hindastiil.css" />
 	</head>
 	<body>
 	<form action="Hinda.php" method="post">
@@ -405,84 +405,84 @@ echo "</pre>";
 		<div id="kuusteist">
 			<h1>1/16 finaalid</h1>
 			<div class="mang">
-				<div class="voistkond"><input type="text" name="1097" maxlength="15" style="width:75px" value="<?php if (isset($rida[98]) && !empty($rida[98])) echo htmlspecialchars($rida[98]);?>"></div>
+				<div class="voistkond"><input type="text" name="1097" maxlength="15" style="width:75px" placeholder="A2" value="<?php if (isset($rida[98]) && !empty($rida[98])) echo htmlspecialchars($rida[98]);?>"></div>
 					<div class="essa">
 						<input type="number" name="1113" min="0" max="9" value="<?php if (isset($rida[114])&& is_numeric($rida[114])) echo $rida[114];?>">
 					</div>
 					<div class="tessa">
 						<input type="number" name="1114" min="0" max="9" value="<?php if (isset($rida[115])&& is_numeric($rida[115])) echo $rida[115];?>">
 					</div>
-				<div class="voistkond2"><input type="text" name="1098" maxlength="15" style="width:75px" value="<?php if (isset($rida[99]) && !empty($rida[99])) echo htmlspecialchars($rida[99]);?>">A2 - C2</div>
+				<div class="voistkond2"><input type="text" name="1098" maxlength="15" style="width:75px" placeholder="C2" value="<?php if (isset($rida[99]) && !empty($rida[99])) echo htmlspecialchars($rida[99]);?>"></div>
 			</div>
 			<div class="mang">
-				<div class="voistkond"><input type="text" name="1099" maxlength="15" style="width:75px" value="<?php if (isset($rida[100]) && !empty($rida[100])) echo htmlspecialchars($rida[100]);?>"></div>
+				<div class="voistkond"><input type="text" name="1099" maxlength="15" style="width:75px" placeholder="D1" value="<?php if (isset($rida[100]) && !empty($rida[100])) echo htmlspecialchars($rida[100]);?>"></div>
 					<div class="essa">
 						<input type="number" name="1115" min="0" max="9" value="<?php if (isset($rida[116])&& is_numeric($rida[116])) echo $rida[116];?>">
 					</div>
 					<div class="tessa">
 						<input type="number" name="1116" min="0" max="9" value="<?php if (isset($rida[117])&& is_numeric($rida[117])) echo $rida[117];?>">
 					</div>
-				<div class="voistkond2"><input type="text" name="1100" maxlength="15" style="width:75px" value="<?php if (isset($rida[101]) && !empty($rida[101])) echo htmlspecialchars($rida[101]);?>">D1 - 3BEF</div>
+				<div class="voistkond2"><input type="text" name="1100" maxlength="15" style="width:75px" placeholder="3BEF" value="<?php if (isset($rida[101]) && !empty($rida[101])) echo htmlspecialchars($rida[101]);?>"></div>
 			</div>
 			<div class="mang">
-				<div class="voistkond"><input type="text" name="1101" maxlength="15" style="width:75px" value="<?php if (isset($rida[102]) && !empty($rida[102])) echo htmlspecialchars($rida[102]);?>"></div>
+				<div class="voistkond"><input type="text" name="1101" maxlength="15" style="width:75px" placeholder="B1" value="<?php if (isset($rida[102]) && !empty($rida[102])) echo htmlspecialchars($rida[102]);?>"></div>
 					<div class="essa">
 						<input type="number" name="1117" min="0" max="9" value="<?php if (isset($rida[118])&& is_numeric($rida[118])) echo $rida[118];?>">
 					</div>
 					<div class="tessa">
 						<input type="number" name="1118" min="0" max="9" value="<?php if (isset($rida[119])&& is_numeric($rida[119])) echo $rida[119];?>">
 					</div>
-				<div class="voistkond2"><input type="text" name="1102" maxlength="15" style="width:75px" value="<?php if (isset($rida[103]) && !empty($rida[103])) echo htmlspecialchars($rida[103]);?>">B1 - 3ACD </div>
+				<div class="voistkond2"><input type="text" name="1102" maxlength="15" style="width:75px" placeholder="3ACD" value="<?php if (isset($rida[103]) && !empty($rida[103])) echo htmlspecialchars($rida[103]);?>"></div>
 			</div>
 			<div class="mang">
-				<div class="voistkond"><input type="text" name="1103" maxlength="15" style="width:75px" value="<?php if (isset($rida[104]) && !empty($rida[104])) echo htmlspecialchars($rida[104]);?>"></div>
+				<div class="voistkond"><input type="text" name="1103" maxlength="15" style="width:75px" placeholder="F1" value="<?php if (isset($rida[104]) && !empty($rida[104])) echo htmlspecialchars($rida[104]);?>"></div>
 					<div class="essa">
 						<input type="number" name="1119" min="0" max="9" value="<?php if (isset($rida[120])&& is_numeric($rida[120])) echo $rida[120];?>">
 					</div>
 					<div class="tessa">
 						<input type="number" name="1120" min="0" max="9" value="<?php if (isset($rida[121])&& is_numeric($rida[121])) echo $rida[121];?>">
 					</div>
-				<div class="voistkond2"><input type="text" name="1104" maxlength="15" style="width:75px" value="<?php if (isset($rida[105]) && !empty($rida[105])) echo htmlspecialchars($rida[105]);?>">F1 - E2</div>
+				<div class="voistkond2"><input type="text" name="1104" maxlength="15" style="width:75px" placeholder="E2" value="<?php if (isset($rida[105]) && !empty($rida[105])) echo htmlspecialchars($rida[105]);?>"></div>
 			</div>
 			<div class="mang">
-				<div class="voistkond"><input type="text" name="1105" maxlength="15" style="width:75px" value="<?php if (isset($rida[106]) && !empty($rida[106])) echo htmlspecialchars($rida[106]);?>"></div>
+				<div class="voistkond"><input type="text" name="1105" maxlength="15" style="width:75px" placeholder="C1" value="<?php if (isset($rida[106]) && !empty($rida[106])) echo htmlspecialchars($rida[106]);?>"></div>
 					<div class="essa">
 						<input type="number" name="1121" min="0" max="9" value="<?php if (isset($rida[122])&& is_numeric($rida[122])) echo $rida[122];?>">
 					</div>
 					<div class="tessa">
 						<input type="number" name="1122" min="0" max="9" value="<?php if (isset($rida[123])&& is_numeric($rida[123])) echo $rida[123];?>">
 					</div>
-				<div class="voistkond2"><input type="text" name="1106" maxlength="15" style="width:75px" value="<?php if (isset($rida[107]) && !empty($rida[107])) echo htmlspecialchars($rida[107]);?>">C1 - 3ABF</div>
+				<div class="voistkond2"><input type="text" name="1106" maxlength="15" style="width:75px" placeholder="3ABF" value="<?php if (isset($rida[107]) && !empty($rida[107])) echo htmlspecialchars($rida[107]);?>"></div>
 			</div>
 			<div class="mang">
-				<div class="voistkond"><input type="text" name="1107" maxlength="15" style="width:75px" value="<?php if (isset($rida[108]) && !empty($rida[108])) echo htmlspecialchars($rida[108]);?>"></div>
+				<div class="voistkond"><input type="text" name="1107" maxlength="15" style="width:75px" placeholder="E1" value="<?php if (isset($rida[108]) && !empty($rida[108])) echo htmlspecialchars($rida[108]);?>"></div>
 					<div class="essa">
 						<input type="number" name="1123" min="0" max="9" value="<?php if (isset($rida[124])&& is_numeric($rida[124])) echo $rida[124];?>">
 					</div>
 					<div class="tessa">
 						<input type="number" name="1124" min="0" max="9" value="<?php if (isset($rida[125])&& is_numeric($rida[125])) echo $rida[125];?>">
 					</div>
-				<div class="voistkond2"><input type="text" name="1108" maxlength="15" style="width:75px" value="<?php if (isset($rida[109]) && !empty($rida[109])) echo htmlspecialchars($rida[109]);?>">E1 - D2</div>
+				<div class="voistkond2"><input type="text" name="1108" maxlength="15" style="width:75px" placeholder="D2" value="<?php if (isset($rida[109]) && !empty($rida[109])) echo htmlspecialchars($rida[109]);?>"></div>
 			</div>
 			<div class="mang">
-				<div class="voistkond"><input type="text" name="1109" maxlength="15" style="width:75px" value="<?php if (isset($rida[110]) && !empty($rida[110])) echo htmlspecialchars($rida[110]);?>"></div>
+				<div class="voistkond"><input type="text" name="1109" maxlength="15" style="width:75px" placeholder="A1" value="<?php if (isset($rida[110]) && !empty($rida[110])) echo htmlspecialchars($rida[110]);?>"></div>
 					<div class="essa">
 						<input type="number" name="1125" min="0" max="9" value="<?php if (isset($rida[126])&& is_numeric($rida[126])) echo $rida[126];?>">
 					</div>
 					<div class="tessa">
 						<input type="number" name="1126" min="0" max="9" value="<?php if (isset($rida[127])&& is_numeric($rida[127])) echo $rida[127];?>">
 					</div>
-				<div class="voistkond2"><input type="text" name="1110" maxlength="15" style="width:75px" value="<?php if (isset($rida[111]) && !empty($rida[111])) echo htmlspecialchars($rida[111]);?>">A1 - 3CDE</div>
+				<div class="voistkond2"><input type="text" name="1110" maxlength="15" style="width:75px" placeholder="3CDE" value="<?php if (isset($rida[111]) && !empty($rida[111])) echo htmlspecialchars($rida[111]);?>"></div>
 			</div>
 			<div class="mang">
-				<div class="voistkond"><input type="text" name="1111" maxlength="15" style="width:75px" value="<?php if (isset($rida[112]) && !empty($rida[112])) echo htmlspecialchars($rida[112]);?>"></div>
+				<div class="voistkond"><input type="text" name="1111" maxlength="15" style="width:75px" placeholder="B2" value="<?php if (isset($rida[112]) && !empty($rida[112])) echo htmlspecialchars($rida[112]);?>"></div>
 					<div class="essa">
 						<input type="number" name="1127" min="0" max="9" value="<?php if (isset($rida[128])&& is_numeric($rida[128])) echo $rida[128];?>">
 					</div>
 					<div class="tessa">
 						<input type="number" name="1128" min="0" max="9" value="<?php if (isset($rida[129])&& is_numeric($rida[129])) echo $rida[129];?>">
 					</div>
-				<div class="voistkond2"><input type="text" name="1112" maxlength="15" style="width:75px" value="<?php if (isset($rida[113]) && !empty($rida[113])) echo htmlspecialchars($rida[113]);?>">B2 - F2</div>
+				<div class="voistkond2"><input type="text" name="1112" maxlength="15" style="width:75px" placeholder="F2" value="<?php if (isset($rida[113]) && !empty($rida[113])) echo htmlspecialchars($rida[113]);?>"></div>
 			</div>
 		</div>	
 										
@@ -811,7 +811,7 @@ $db="test";
 $sisu = "";
 for ($x = 1001; $x <= 1172; $x++) {
 	if (isset($_POST[$x])&& is_numeric($_POST[$x])){
-	$value = $_POST[$x];
+	$value = mysqli_real_escape_string($connection, $_POST[$x]);
 	$sisu .= " f".$x;	
     $sisu .= "=";
     $sisu .= " \"";
@@ -819,7 +819,7 @@ for ($x = 1001; $x <= 1172; $x++) {
 	$sisu .= "\",";
 	}
 	if (isset($_POST[$x])&& !empty($_POST[$x])&& !is_numeric($_POST[$x])){
-	$value = $_POST[$x];
+	$value = mysqli_real_escape_string($connection, $_POST[$x]);
 	$sisu .= " f".$x;	
     $sisu .= "=";
     $sisu .= " \"";
@@ -829,12 +829,15 @@ for ($x = 1001; $x <= 1172; $x++) {
 }
 
 $sisu = substr($sisu, 0, -1);
-echo $sisu;
+//echo $sisu;
 
 $connection = mysqli_connect($host, $user, $pass, $db) or die("ei saa ühendust mootoriga- ".mysqli_error());
 //mysqli_query($connection, "SET CHARACTER SET UTF8") or die("Ei saanud baasi utf-8-sse - ".mysqli_error($connection));
 $query= "UPDATE koiderma_hinda SET ".$sisu;
 $result = mysqli_query($connection, $query) or die("$query - ".mysqli_error($connection));
+
+require_once("kalkuleeri.php");
+arvuta();
 
 }
 ?>

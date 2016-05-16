@@ -17,7 +17,7 @@
 .tessa, .essa, .voistkond, .voistkond2{
 	float:left;
 }
-#grupp input, #kuusteist input {
+#grupp input, #kuusteist input, #kaheksa input, #neli input,  #finaal input {
 	width: 35px;
 	margin: 2px;
 }
@@ -39,14 +39,8 @@ input[type=number] {
 .tabel {
 	float:left;
 	position: absolute;
-	left: 500px;
-	top: 90px;
-}
-.tabel2 {
-	float:left;
-	position: absolute;
-	left: 500px;
-	top: 90px;
+	left: 450px;
+	top: 25px;
 }
 table, th, td {
   	border: 1px solid black;
@@ -68,7 +62,7 @@ td {
 }
 h1 {
 	margin-top: 33px;
-	margin-bottom: 20px;
+	margin-bottom: 25px;
 }
 #edasi {
 	
@@ -79,14 +73,14 @@ h1 {
 	display:none;
 }
 #kuusteist{
-	display:none;
+	display:block;
 }
 #winner{
 	margin: 10px;
 	padding: 10px;
 	font-size: 16pt;
 	color: red;
-	display:none;
+	display:block;
 }
 #nimi{
 	margin: 5px;
@@ -109,13 +103,10 @@ h1 {
 	width: 150px;
 }
 #button1{
-	display:none;
+	display:block;
 }
 #peidus{
-	display:none;
-}
-#lisakyssad{
-	display:none;
+	display:block;
 }
 .kyssa{
 	margin: 7px;
