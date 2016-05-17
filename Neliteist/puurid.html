@@ -1,0 +1,19 @@
+<?php if (!empty($puurid)):
+	foreach($puurid as $essa=>$puurinr):
+?>
+<div>
+<?php echo "puur nr ".$essa ?>
+<?php foreach($puurinr as $ids=>$loomad): ?>
+
+<?php if (isset($_SESSION['user']) && $_SESSION['user']=="admin"): ?>
+			<a href="?page=muuda&id=<?php echo $loomad['id'];?>"><img src="<?php echo $loomad['liik'];?>" alt="<?php echo $loomad['nimi'];?>"></a>
+			
+		<?php else: ?>
+			<img src="<?php echo $loomad['liik'];?>" alt="<?php echo $loomad['nimi'];?>">
+		<?php endif; ?>
+<?php endforeach; ?>
+</div>
+
+<?php endforeach;
+endif;
+?>
