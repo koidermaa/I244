@@ -1,4 +1,4 @@
-﻿window.onload = function() {
+﻿window.onload = function() {   // see funktsioon prindib põhilehele alagrupid
 	
 	var grupp = ["A", "B", "C", "D", "E", "F"];
 	var team = ["Prantsusmaa", "Rumeenia", "Albaania", "Sveits", "Inglismaa", "Venemaa", "Wales", "Slovakkia", "Saksamaa", "Ukraina", "Poola", "Põhja-Iirimaa", "Hispaania", "Tsehhi", "Türgi", "Horvaatia", "Belgia", "Itaalia", "Iirimaa", "Rootsi", "Portugal", "Island", "Austria", "Ungari"];
@@ -22,7 +22,7 @@
 
 
 var next = document.getElementById("next");
-next.onclick = function(){
+next.onclick = function(){    // Kui klõpsata "täida alagrupid" nupule
 	var value = true;
 	var nimeS = true;
 	for (j = 101; j < 173; j++) {						//kontrollib kas tulemused on sobivas formaadis
@@ -40,17 +40,17 @@ next.onclick = function(){
 	
 	if (value && nimeS){
 		document.getElementById("edasi").style.display = "block";
-		koguAndmed();									//võib minna arvutama
+		koguAndmed();									//Täidab alagrupid ja saab protsessiga edasi minna
 	}	
 	else if (!nimeS){
-		alert ("Sisesta nimi");
+		alert ("Sisesta nimi!");
 		}
 	else {
-		alert ("Palun kontrolli sisestust!!");
+		alert ("Palun kontrolli arvude sisestust!!");
 	}
 }	
 function koguAndmed (){
-	var a = [101,113,125,137,149,161];								//alagrupi esimese m?ngu tulemuse algus
+	var a = [101,113,125,137,149,161];								//alagrupi esimese mängu tulemuse algus
 	var tulemused=[];
 	
 	for (i=0; i < a.length; i++) {						// paneb alagruppide tulemused array sisse eraldi
@@ -62,10 +62,10 @@ function koguAndmed (){
 			tulemused[k]=y;
 			k++;
 		}
-		arvutused (tulemused, i);				
+		arvutused (tulemused, i);						// arvutab ja sisestab alagruppide punktid, väravatevahe ja kohad  ja nii iga alagrupi kaupa
 	}	
 }
-function arvutused (tulemused, i){
+function arvutused (tulemused, i){						// arvutab ja sisestab alagruppide punktid, väravatevahe ja kohad  ja nii iga alagrupi kaupa
 	
 	var team1p, team2p, team3p, team4p, team1g, team2g, team3g, team4g, team1ga, team2ga, team3ga, team4ga;
 	var punktid =[];
@@ -96,20 +96,20 @@ function arvutused (tulemused, i){
 	team4g= tulemused[3]+tulemused[5]+tulemused[8];
 	var tiimivaravad = [team1g, team2g, team3g, team4g];
 	
-	team1ga= tulemused[1]+tulemused[7]+tulemused[8];	// vastu l??dud v?ravad tiimil
+	team1ga= tulemused[1]+tulemused[7]+tulemused[8];	// vastu löödud väravad tiimil
 	team2ga= tulemused[0]+tulemused[5]+tulemused[11];
 	team3ga= tulemused[3]+tulemused[6]+tulemused[10];
 	team4ga= tulemused[2]+tulemused[4]+tulemused[9];
 	var tiimivaravadag = [team1ga, team2ga, team3ga, team4ga];
 	
-	var ranks=ranking (tulemused, tiimipunktid, tiimivaravad, tiimivaravadag);
+	var ranks=ranking (tulemused, tiimipunktid, tiimivaravad, tiimivaravadag);    // järjestab võistkonnad alagruppides
 	
 	l = 201 + i*4;
 	k = 301 + i*4;
 	q = 401 + i*4;
 	ps = 801 + i*4;
 
-	for (j=0; j < 4; j++) {								// t?idab punktide ja v?ravate vahe tabeli v?ljad
+	for (j=0; j < 4; j++) {								// täidab punktide ja väravate vahe tabeli väljad
 		document.getElementById(k).innerHTML= tiimipunktid[j];
 		document.getElementById(l).innerHTML= tiimivaravad[j]+" : " + tiimivaravadag[j];
 		document.getElementById(q).innerHTML= ranks[j];
@@ -120,19 +120,19 @@ function arvutused (tulemused, i){
 		ps++;		
 	} 		
 }
-function ranking (tulemused, tiimipunktid, tiimivaravad, tiimivaravadag){
+function ranking (tulemused, tiimipunktid, tiimivaravad, tiimivaravadag){    //järjestab võistkonnad alagruppides
 	
 	var n=0;
 	var pl;
 	var rank=1;
-	var kohad=[];				//siia arraysse tulevad kohad
+	var kohad=[];				
 	var vahe1 = tiimivaravad[0]-tiimivaravadag[0];
 	var vahe2 = tiimivaravad[1]-tiimivaravadag[1];
 	var vahe3 = tiimivaravad[2]-tiimivaravadag[2];
 	var vahe4 = tiimivaravad[3]-tiimivaravadag[3];
 	var vvahe= [vahe1, vahe2, vahe3, vahe4];
 	
-	for (s = 9; s >= 0; s--) { 
+	for (s = 9; s >= 0; s--) { 					// otsib suurima punktide arvu järgi võistkondi
     
 		for (j = 0; j < 4; j++) {
 			if (tiimipunktid[j]==s){
@@ -145,10 +145,11 @@ function ranking (tulemused, tiimipunktid, tiimivaravad, tiimivaravadag){
 			kohad [pl] = rank;
 			rank++;
 			}	
+			
 		if (n==2){
 			var a = tiimipunktid.indexOf(s);
 			var b = tiimipunktid.lastIndexOf(s);
-			var c = twoequal(a,b, tulemused, tiimivaravad, tiimivaravadag);
+			var c = twoequal(a,b, tulemused, tiimivaravad, tiimivaravadag);   // kui saab 2 võistkonda võrdse arvu punkte
 			if (c){
 				kohad[a]=rank;
 				kohad[b]=rank+1;
@@ -157,26 +158,25 @@ function ranking (tulemused, tiimipunktid, tiimivaravad, tiimivaravadag){
 				kohad[a]=rank+1;
 				kohad[b]=rank;
 				}	
-			
 			rank=rank+2;
 			}	
-		if (n==3){
 			
+		if (n==3){
 			var indexes = getAllIndexes(tiimipunktid,s);
 			var a = indexes[0];
 			var b = indexes[1];
 			var c = indexes[2];
-			var seiss = threeequal(a,b,c, vvahe, tulemused, tiimivaravad, tiimivaravadag);
+			var seiss = threeequal(a,b,c, vvahe, tulemused, tiimivaravad, tiimivaravadag);   // kui 3 võistkonda saab võrdse arvu punkte
 			kohad[a]=seiss[0]+rank-1;
 			kohad[b]=seiss[1]+rank-1;
 			kohad[c]=seiss[2]+rank-1;
 			rank=rank+3;
-			}		
+			}	
+				
 		if (n==4){
-	
 			var d=fourequal(vvahe, tulemused, tiimivaravad, tiimivaravadag);
 			if (d[0]==1001){
-				var e=fourequal(tiimivaravad, tulemused, tiimivaravad, tiimivaravadag);
+				var e=fourequal(tiimivaravad, tulemused, tiimivaravad, tiimivaravadag);   // kui 4 võistkonda saab võrdse arvu punkte
 				if (e[0]==1001){
 					kohad[0]=1;
 					kohad[1]=2;
@@ -202,7 +202,7 @@ function ranking (tulemused, tiimipunktid, tiimivaravad, tiimivaravadag){
 	return kohad;
 }
 
-function twoequal (a,b, tulemused, tiimivaravad, tiimivaravadag){
+function twoequal (a,b, tulemused, tiimivaravad, tiimivaravadag){   // kui 2 võistkonda saavad võrdse arvu punkte
 	var c = [0,2,1,0,0,1];
 	var d = [1,3,3,2,3,2];
 	
@@ -245,7 +245,7 @@ function twoequal (a,b, tulemused, tiimivaravad, tiimivaravadag){
 		}
 	}
 }	
-function fourequal(vvahe, tulemused, tiimivaravad, tiimivaravadag){
+function fourequal(vvahe, tulemused, tiimivaravad, tiimivaravadag){    // kui 4 võistkonda saavad võrdse arvu punkte
 	
 	var m=0;
 	var plN;
@@ -302,7 +302,7 @@ function fourequal(vvahe, tulemused, tiimivaravad, tiimivaravadag){
 	
 	return kohadN;
 }	
-function getAllIndexes(arr, val) {
+function getAllIndexes(arr, val) {				// jätab arraysse elemendid, millel sama väärtus
     	var indexes = [], i;
    		for(i = 0; i < arr.length; i++){
         	if (arr[i] == val)
@@ -310,7 +310,7 @@ function getAllIndexes(arr, val) {
         }
     		return indexes;
 }
-function threeequal(a,b,c, vvahe, tulemused, tiimivaravad, tiimivaravadag){
+function threeequal(a,b,c, vvahe, tulemused, tiimivaravad, tiimivaravadag){			//erijuht kui 3 võistkonda saavad võrdse arvu punkte
 	var uustulemus=[]; 
 	var ppunktid=[];
 	var team1pp, team2pp, team3pp;
@@ -329,7 +329,7 @@ function threeequal(a,b,c, vvahe, tulemused, tiimivaravad, tiimivaravadag){
 		uustulemus=[tulemused[10], tulemused[11], tulemused[4], tulemused[5], tulemused[2], tulemused[3]];
 		}
 
-	for (j=0; j < 6; j=j+2) {							//m??rab punktid m?ngudele
+	for (j=0; j < 6; j=j+2) {							//määrab punktid mängudele
 		if (uustulemus[j] >  uustulemus[j+1]) {
 			ppunktid[j] =3;
 			ppunktid[j+1] =0;
@@ -361,7 +361,7 @@ function threeequal(a,b,c, vvahe, tulemused, tiimivaravad, tiimivaravadag){
 	var uusVVahe=[tiimivaravad[a]-tiimivaravadag[a],tiimivaravad[b]-tiimivaravadag[b],tiimivaravad[c]-tiimivaravadag[c]];
 	var uusVaravKoik=[tiimivaravad[a],tiimivaravad[b],tiimivaravad[c]];
 	
-	var kohadd = ranking3 (tiimipunktidd, tulemused, tiimivaravad, tiimivaravadag,a,b,c);
+	var kohadd = ranking3 (tiimipunktidd, tulemused, tiimivaravad, tiimivaravadag,a,b,c);   //järjestab erijuhi võistkonnad
 		if (kohadd[0]==1001){
 				var kohad3=ranking3(vaheUus, tulemused, tiimivaravad, tiimivaravadag,a,b,c);
 				if (kohad3[0]==1001){
@@ -464,7 +464,7 @@ function ranking3 (array, tulemused, tiimivaravad, tiimivaravadag, a,b,c){
 }
 
 var edasi = document.getElementById("edasi");
-edasi.onclick = function(){
+edasi.onclick = function(){							// võimaldab alagruppidest edasi liikuda
 	document.getElementById("grupp").style.display = "none";
 	document.getElementById("next").style.display = "none";
 	document.getElementById("kuusteist").style.display = "block";
@@ -473,13 +473,13 @@ edasi.onclick = function(){
 
 $(document).ready(function(){
 
-			$("#togg").click(function(){
+			$("#togg").click(function(){			// võimaldab näidata alagruppe ja mitte
 				$("#grupp").toggle();
 				$("#next").toggle();
 			});	
 			
 });
-function kuusteistData(){
+function kuusteistData(){     // võtab alagruppide tabelist vajaliku info
 	
 	var alaPunktid=[];
 	var alaKohad=[];
@@ -551,9 +551,9 @@ function kuusteistData(){
 		ii++	
 	}
 		
-	kuusteistArvutus(alaPunktid, riigid, alaKohad, varStrike, varAgainst, varVahe);
+	kuusteistArvutus(alaPunktid, riigid, alaKohad, varStrike, varAgainst, varVahe);   // määrab 1/16 finaali õiged võistkonnad õigele kohale
 }
-function kuusteistArvutus(alaPunktid, riigid, alaKohad, varStrike, varAgainst, varVahe){
+function kuusteistArvutus(alaPunktid, riigid, alaKohad, varStrike, varAgainst, varVahe){   // määrab 1/16 finaali õiged võistkonnad õigele kohale
 	
 	var esimesePos=[613,605,609,603,611,607];
 	var esimesePos2=[837,829,833,827,835,831];
@@ -569,12 +569,12 @@ function kuusteistArvutus(alaPunktid, riigid, alaKohad, varStrike, varAgainst, v
 	var kolmasVahe=[];
 	
 	for (var jk = 0; jk < 24; jk++) {	
-		if (alaKohad[jk]==1){
+		if (alaKohad[jk]==1){					// märgib 1/16 finaalidesse esimese koha saanud riigid
 			document.getElementById(esimesePos[je]).innerHTML=riigid[jk];
 			document.getElementById(esimesePos2[je]).value=riigid[jk];
 			je++;
 			}
-		if (alaKohad[jk]==2){
+		if (alaKohad[jk]==2){					// märgib 1/16 finaalidesse teise koha saanud riigid
 			document.getElementById(teinePos[jt]).innerHTML=riigid[jk];
 			document.getElementById(teinePos2[jt]).value=riigid[jk];
 			jt++;
@@ -588,9 +588,9 @@ function kuusteistArvutus(alaPunktid, riigid, alaKohad, varStrike, varAgainst, v
 			js++;
 			}		
 	}
-	paigutaKolmandad(kolmasRiigid, kolmasPunktid, kolmasVaravad, kolmasVarSisse,kolmasVahe);	
+	paigutaKolmandad(kolmasRiigid, kolmasPunktid, kolmasVaravad, kolmasVarSisse,kolmasVahe);	// järjestab kolmanda koha saanud võistkonnad
 }
-function paigutaKolmandad(kolmasRiigid, kolmasPunktid, kolmasVaravad, kolmasVarSisse, kolmasVahe){
+function paigutaKolmandad(kolmasRiigid, kolmasPunktid, kolmasVaravad, kolmasVarSisse, kolmasVahe){  // järjestab kolmanda koha saanud võistkonnad
 		var kolmasPos=[614,606,610,604];
 		var kolmasPos2=[838,830,834,828];
 		
@@ -698,16 +698,16 @@ function paigutaKolmandad(kolmasRiigid, kolmasPunktid, kolmasVaravad, kolmasVarS
 		po=0;
 		}
 		
-		var newPos = kolmandadPaika(kpositsioonid);
-		for (z = 0; z < 4; z++) {
+		var newPos = kolmandadPaika(kpositsioonid);   //valib parimad kolmandad võistkonnad
+		for (z = 0; z < 4; z++) {						// sisestab kolmanda koha saanud võistkonnad 1/16 finaalidesse
 			
 			var koht = newPos[z]-1;
-			document.getElementById(kolmasPos[z]).innerHTML=kolmasRiigid[koht];	
+			document.getElementById(kolmasPos[z]).innerHTML=kolmasRiigid[koht];			
 			document.getElementById(kolmasPos2[z]).value=kolmasRiigid[koht];	
 		}
 	}	
 	
-function kolmedvordselt(kolmVar2, kolmVahe2, rankPol){
+function kolmedvordselt(kolmVar2, kolmVahe2, rankPol){			// kolm võistkonda said võrdselt punkte 3nda koha juures
 		var vr, plKolm;
 		var pd =0;
 		var vordsedK=[];
@@ -790,7 +790,7 @@ function kolmedvordselt(kolmVar2, kolmVahe2, rankPol){
 		}
 		return vordsedK;
 }
-function neljadvordselt(kolmVar3, kolmVahe3, rankPol){
+function neljadvordselt(kolmVar3, kolmVahe3, rankPol){			// neli võistkonda said võrdselt punkte 3nda koha juures
 		var vr, plKolm;
 		var pd =0;
 		var vordsedK=[];
@@ -900,7 +900,7 @@ function neljadvordselt(kolmVar3, kolmVahe3, rankPol){
 		
 }
 
-function viiedvordselt(kolmVar4, kolmVahe4, rankPol) {
+function viiedvordselt(kolmVar4, kolmVahe4, rankPol) {			// viis võistkonda said võrdselt punkte 3nda koha juures
 		var vr, plKolm;
 		var pd =0;
 		var vordsedK=[];
@@ -1035,7 +1035,7 @@ function viiedvordselt(kolmVar4, kolmVahe4, rankPol) {
 		}
 		return vordsedK;
 }
-function kolmandadPaika(kpositsioonid){
+function kolmandadPaika(kpositsioonid){     // vaatab järgi millised võistkonnad olid neli paremad 3ndat kohta
 	var jarjestus=[];
 	for (i = 0; i < 6; i++) {
 		if (kpositsioonid[i]==1 || kpositsioonid[i]==2 || kpositsioonid[i]==3 || kpositsioonid[i]==4 ){
@@ -1092,7 +1092,7 @@ function kolmandadPaika(kpositsioonid){
 		}
 	return jarjestus;
 }
-function veerandFinaal(el){
+function veerandFinaal(el){   // finaalide osa täitmiseks
 	var elIdy=el.id;
 	var elId = parseInt(elIdy);
 	var even = isEven(elId);
@@ -1127,16 +1127,16 @@ function veerandFinaal(el){
 			alert ("viik ei sobi siia");		
 			}
 		 else if (kinnitus){
-			taidaEdasi(a,b,c,d,elId);
+			taidaEdasi(a,b,c,d,elId);		// täidab järgmise ringi paarid
 			}			
 	}
-function isEven(value) {
+function isEven(value) {   //kas id on paarisarv
 	if (value%2 == 0)
 		return true;
 	else
 		return false;
 }
-function taidaEdasi(a,b,c,d, elId){
+function taidaEdasi(a,b,c,d, elId){   //täidab järgmise ringi paarid
 	
 	var taide = elId-84-Math.ceil((elId-701)/2);
 
@@ -1147,7 +1147,7 @@ function taidaEdasi(a,b,c,d, elId){
 		document.getElementById(taide).innerHTML=d;
 		}
 }
-function voitja(el){
+function voitja(el){		väljastab võitja meeskonna nime
 	var elIdy=el.id;
 	var elId = parseInt(elIdy);
 	var even = isEven(elId);
@@ -1203,7 +1203,7 @@ function selgitaVoitja(a,b,c,d, elId){
 		}
 	taidakastid();	
 }
-function taidakastid (){
+function taidakastid (){  // täidab hidden väljad
 	var ts = 841;
 	var ls = 617;
 	for (i = 0; i < 8; i++) {
@@ -1221,6 +1221,6 @@ function taidakastid (){
 	document.getElementById("853").value=document.getElementById("629").innerHTML;
 	document.getElementById("854").value=document.getElementById("630").innerHTML;
 	document.getElementById("winner").style.display = "block";
-	document.getElementById("lisakyssad").style.display = "block";
+	document.getElementById("lisakyssad").style.display = "block";		// näitab lisaküsimusi
 	document.getElementById("button1").style.display = "block";
 }
