@@ -35,7 +35,8 @@ input[type="number"].mod::-webkit-inner-spin-button:active{
 }
 input[type=number] {
    	-moz-appearance:textfield;
-}		
+}
+	
 .tabel {
 	float:left;
 	position: absolute;
@@ -55,9 +56,30 @@ table, th, td {
 }
 table {
 	margin-top: 41px;	
+}	
+
+.tabel2 td {
+	padding:4px;
 }
-td {
-	text-align: center;		
+.tabel2 table {
+	border-collapse: collapse;
+}
+/* tab2 on tulemuste table */
+#tab2 table {   
+	border-collapse: collapse;
+	margin-left: 10px;
+	margin-top: 20px;
+}
+#tab2 th, #tab2 td {
+	text-align: left;
+    padding: 5px;
+}
+
+#tab2 tr:nth-child(even){
+	background-color: #f2f2f2
+}
+.tabel th, .tabel td {
+	padding: 2px;
 }
 #next {
 	clear:both;
@@ -71,7 +93,6 @@ h1 {
 	margin-bottom: 20px;
 }
 #edasi {
-	
 	text-decoration: underline;
 	font-size: 20px;
 	color: blue;
@@ -93,7 +114,6 @@ h1 {
 	padding: 10px;
 	font-size: 14pt;
 }
-
 #togg{
 	float:right;
 	position: absolute;	
