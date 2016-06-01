@@ -6,7 +6,6 @@ $pass="t3st3r123";
 $db="test";
 
 $connection = mysqli_connect($host, $user, $pass, $db) or die("ei saa ?hendust mootoriga- ".mysqli_error());
-//mysqli_query($connection, "SET CHARACTER SET UTF8") or die("Ei saanud baasi utf-8-sse - ".mysqli_error($connection));
 $query= "SELECT * FROM koiderma_tulemused ORDER BY punktid DESC";
 $result = mysqli_query($connection, $query) or die("$query - ".mysqli_error($connection));
 
@@ -18,11 +17,7 @@ while ($rida = mysqli_fetch_array($result)){
 
 global $parv;
 $arv = mysqli_num_rows($result);
-$parv = $arv*24 + 100;
-/*echo $arv;
-echo "<pre>";
-print_r ($punktid);
-echo "</pre>";*/
+$parv = $arv*30 + 115;
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +29,7 @@ echo "</pre>";*/
 
 	</head>
 	<body>
-	
+	<div id="tab2">
 	<table>
   	<tr>
   	<th>Koht</th>
@@ -54,6 +49,7 @@ echo "</pre>";*/
 	endforeach; 
 	?>
 	</table>
+	</div></br>
 	<a href="punktisysteem.html">Punktisüsteem</a>
 	<?php
 	if (isset($_GET["page"]) && $_GET["page"]!="") {

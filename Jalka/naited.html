@@ -5,9 +5,7 @@ $query= "SELECT * FROM koiderma_jalka WHERE id=".$page;
 $result = mysqli_query($connection, $query) or die("$query - ".mysqli_error($connection));
 
 $rida = mysqli_fetch_array($result);
-/*echo "<pre>";
-print_r ($rida);
-echo "</pre>";*/
+
 ?>
 <div id="grupp">
 			<h1 id="eh1">Alagrupp A</h1>

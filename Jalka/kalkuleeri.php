@@ -8,7 +8,6 @@ $pass="t3st3r123";
 $db="test";
 
 $connection = mysqli_connect($host, $user, $pass, $db) or die("ei saa ühendust mootoriga- ".mysqli_error());
-//mysqli_query($connection, "SET CHARACTER SET UTF8") or die("Ei saanud baasi utf-8-sse - ".mysqli_error($connection));
 $query= "SELECT * FROM koiderma_jalka";
 $query2= "SELECT * FROM koiderma_hinda";
 $result = mysqli_query($connection, $query) or die("$query - ".mysqli_error($connection));
@@ -269,7 +268,8 @@ if (isset($kontroll[154]) && !empty($kontroll[154])&& isset($kontroll[155]) && !
 			}	
 		}			
 	}
-}		
+}	
+// lisaküsimuste punktid	
 if (isset($kontroll[161]) && is_numeric($kontroll[161])){
 	for ($x = 0; $x < $arv; $x++) {
 		if (isset($ennustused[$x][161]) && is_numeric($ennustused[$x][161])){
@@ -406,11 +406,6 @@ if (isset($kontroll[173]) && !empty($kontroll[173])){
 		}			
 	}
 }
-/*
-echo "<pre>";
-print_r($punktid);
-echo "</pre>";
-*/
 
 for ($x = 0; $x < $arv; $x++) {
 	$z=$x+1;

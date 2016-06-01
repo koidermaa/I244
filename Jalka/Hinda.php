@@ -9,12 +9,7 @@ $db="test";
 $connection = mysqli_connect($host, $user, $pass, $db) or die("ei saa ühendust mootoriga- ".mysqli_error());
 $query= "SELECT * FROM koiderma_hinda";
 $result = mysqli_query($connection, $query) or die("$query - ".mysqli_error($connection));
-
 $rida = mysqli_fetch_array($result);	
-//echo utf8_decode($rida[99]);
-echo "<pre>";
-//print_r($rida);
-echo "</pre>";
 ?>
 
 <!DOCTYPE html>
@@ -829,15 +824,12 @@ for ($x = 1001; $x <= 1172; $x++) {
 }
 
 $sisu = substr($sisu, 0, -1);
-//echo $sisu;
 
 $connection = mysqli_connect($host, $user, $pass, $db) or die("ei saa ühendust mootoriga- ".mysqli_error());
-//mysqli_query($connection, "SET CHARACTER SET UTF8") or die("Ei saanud baasi utf-8-sse - ".mysqli_error($connection));
 $query= "UPDATE koiderma_hinda SET ".$sisu;
 $result = mysqli_query($connection, $query) or die("$query - ".mysqli_error($connection));
 
 require_once("kalkuleeri.php");
 arvuta();
-
 }
 ?>

@@ -8,7 +8,7 @@ Tulemusteleht: http://enos.itcollege.ee/~koiderma/Jalka/tulemused.php
 
 
 Leht koosneb osadest:
- * JalkaEM.html  - siin toimub info sisestus.
+ * JalkaEM.html  - siin toimub info sisestus (väravate arv max suurus on piiratud 9 peale)
  * saada.php - saadab sisestatud tulemused serverisse
  * JalkakEM.js - peamiselt kontrollib, kas info on õigesti täidetud sisestuslehel, paigutab võistkonnad alagruppidesse ning hiljem 1/16, veerandfinaalidesse, poolfinaali ja finaali
  * jalkastiil.css - sisestus ja tulemuste lehe stiil

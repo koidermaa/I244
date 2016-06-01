@@ -1147,7 +1147,7 @@ function taidaEdasi(a,b,c,d, elId){   //täidab järgmise ringi paarid
 		document.getElementById(taide).innerHTML=d;
 		}
 }
-function voitja(el){		väljastab võitja meeskonna nime
+function voitja(el){		//väljastab võitja meeskonna nime
 	var elIdy=el.id;
 	var elId = parseInt(elIdy);
 	var even = isEven(elId);
