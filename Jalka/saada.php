@@ -1,6 +1,7 @@
 ﻿<?php 
 echo "<h3>Tulemused käes. Tabeliseisu jälgi <a href=\"http://enos.itcollege.ee/~koiderma/Jalka/tulemused.php\">SIIT!</a></h3>"; 
 
+if (isset($_POST[1000])&& !empty($_POST[1000])){
 global $connection;
 $host="localhost";
 $user="test";
@@ -35,5 +36,6 @@ $query= "INSERT INTO koiderma_tulemused VALUES (NULL, \"".$_POST[1000]."\", 0 )"
 $result = mysqli_query($connection, $query) or die("$query - ".mysqli_error($connection));
 $query2= "INSERT INTO koiderma_jalka VALUES (NULL,".$sisu.")";
 $result1 = mysqli_query($connection, $query2) or die("$query - ".mysqli_error($connection));
+}
 
 ?>

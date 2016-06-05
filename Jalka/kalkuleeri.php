@@ -18,12 +18,15 @@ while ($rida = mysqli_fetch_array($result)){
 	$ennustused[$i]=$rida;
 	$i++;
 }
+
+
 $kontroll = mysqli_fetch_array($result2);
 
 $arv = mysqli_num_rows($result);
 for ($z = 0; $z < $arv; $z++){
 	$punktid[$z]=0;
-	}
+	$ids[$z]=$ennustused[$z][0];
+	}	
 	
 for ($y = 2; $y < 74; $y=$y+2) {			// Alagruppide punktide arvutus
 	if (isset($kontroll[$y]) && is_numeric($kontroll[$y]) && isset($kontroll[$y+1]) && is_numeric($kontroll[$y+1])){
@@ -408,7 +411,7 @@ if (isset($kontroll[173]) && !empty($kontroll[173])){
 }
 
 for ($x = 0; $x < $arv; $x++) {
-	$z=$x+1;
+	$z=$ids[$x];
 $query3= "UPDATE koiderma_tulemused SET punktid=".$punktid[$x]." WHERE id=".$z;
 $result = mysqli_query($connection, $query3) or die("$query - ".mysqli_error($connection));
 }
